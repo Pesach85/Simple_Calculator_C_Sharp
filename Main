@@ -1,0 +1,179 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static ArrayList numeri_letti;
+        static ArrayList numeri;
+        static ArrayList operatori;
+        static char op;
+        static char op2;
+        static char op3;
+        static string read = "";
+        static string number = "";
+        static double risultato;
+
+        public static void Main(string[] args)
+        {
+            Start();
+        }
+
+        static void Start()
+        {
+            numeri_letti = new ArrayList();
+            operatori = new ArrayList();
+            number = "";
+
+
+            read = Console.ReadLine();
+
+            Genera_operazione();
+
+            Operazione();
+
+            Fine_operazione();
+        }
+
+        static void Fine_operazione()
+        {
+            Console.WriteLine("Write Q or q to quit or any other to continue");
+            try
+            {
+                char read = Convert.ToChar(Console.ReadLine());
+                if (read == 'q' || read == 'Q') Uscita(); else Start();
+            }
+            catch (Exception c)
+            {
+                Console.WriteLine("Reimmetti operazione");
+                Start();
+            }
+        }
+
+        static void Uscita()
+        {
+            Console.ReadKey();
+        }
+
+        static void Genera_operazione() // The algorithm of processing chars can be improved but was just scripted from scratch to make it works
+        {
+            int i = 0;
+            bool letto = false;
+
+            for (i = 0; i < read.Length; i++)
+            {
+                if (Char.IsNumber(read[i]))
+                {
+                    number += read[i];
+                }
+                else if (Char.IsSymbol(read[i]))
+                    {
+                        operatori.Add(read[i]);
+                        letto = false;
+                    }
+                else if (read[i]=='-')
+                    {
+                        operatori.Add(read[i]);
+                        letto = false;
+                    }
+                else if (read[i] == '*'||read[i] == 'x')
+                {
+                    operatori.Add(read[i]);
+                    letto = false;
+                }
+                else if (read[i] == ':' || read[i] == '/')
+                {
+                    operatori.Add(read[i]);
+                    letto = false;
+                }
+                else if (Char.IsWhiteSpace(read[i]))
+                {
+                    if (!letto && number != "")
+                    {
+                        numeri_letti.Add(number);
+                        number = "";
+                        letto = true;
+                    }
+                    else if (number != "") number += number;
+                }
+            }
+
+            if (i == read.Length)
+            {
+                numeri_letti.Add(number);
+                number = "";
+                letto = true;
+            }
+        }
+
+        static void Operazione()
+        {
+            risultato = 0;
+            numeri = new ArrayList();
+            for (int l = 0; l < numeri_letti.Count; l++)
+            {
+                numeri.Add(Convert.ToDouble(numeri_letti[l]));
+            }
+
+            op = (char)operatori[0];
+            if (operatori.Count > 1)
+            {
+                op2 = (char)operatori[1];
+               //  op3 = (char)operatori[2];
+            }
+
+            double primo = (double)numeri[0];
+            double temp = (double)numeri[1];
+            for (int m = 0; m < numeri.Count; m++)
+            {
+                if (op == '+')
+                {
+                    risultato = primo + temp;
+                    oper2();
+                    //oper3();
+                }
+            }
+                if (op=='-')
+                {
+                    risultato = primo - temp;
+                    oper2();
+                    //oper3();
+            }
+                if (op=='*'|| op == 'x')
+                {
+                    risultato = primo * temp;
+                    oper2();
+                    //oper3();
+            }
+                if (op=='/' || op == ':')
+                {
+                    risultato = primo / temp;
+                    oper2();
+                    //oper3();
+            }
+
+            Console.WriteLine(risultato);
+        }
+
+        static void oper2()
+        {
+            if (op2 == '*' || op2 == 'x') risultato = risultato * (double)numeri[numeri.Count - 1];
+            if (op2 == '/' || op2 == ':') risultato = risultato / (double)numeri[numeri.Count - 1];
+            if (op2 == '-') risultato = risultato - (double)numeri[numeri.Count - 1];
+            if (op2 == '+') risultato = risultato + (double)numeri[numeri.Count - 1];
+        }
+        static void oper3() // broken at the moment, not programmed
+        {
+            if (op3 == '*' || op3 == 'x') risultato = risultato * (double)numeri[numeri.Count - 1];
+            if (op3 == '/' || op3 == ':') risultato = risultato / (double)numeri[numeri.Count - 1];
+            if (op3 == '-') risultato = risultato - (double)numeri[numeri.Count - 1];
+            if (op3 == '+') risultato = risultato + (double)numeri[numeri.Count - 1];
+        }
+    }
+}
+
