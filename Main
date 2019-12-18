@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp6
+namespace ConsoleApp3
 {
     class Program
     {
@@ -185,7 +185,7 @@ namespace ConsoleApp6
             else if ((op2 == '*' || op2 == 'x') && op == op2) risultato = risultato * temp2; // case n1 * n2 * n3
             else if ((op == '*' || op == 'x') && (op2 == '+' || op2 == '-')) risultato = (primo * temp) + temp2; // case n1 * n2 + n3
             else if ((op == '*' || op == 'x') && (op2 == '-')) risultato = (primo * temp) - temp2; // case n1 * n2 - n3
-            else if ((op == '*' || op == 'x') && (op2 == ':' || op2 =='/')) risultato = primo * temp / temp2; // case n1 * n2 / n3
+            else if ((op == '*' || op == 'x') && (op2 == ':' || op2 == '/')) risultato = primo * temp / temp2; // case n1 * n2 / n3
             else if ((op == ':' || op == '/') && (op2 == op)) risultato = risultato / temp2; // case n1 / n2 / n3
             else if ((op == ':' || op == '/') && (op2 == '+')) risultato = (primo / temp) + temp2; // case n1 / n2 + n3
             else if ((op == ':' || op == '/') && (op2 == '-')) risultato = (primo / temp) - temp2; // case n1 / n2 - n3
@@ -196,10 +196,11 @@ namespace ConsoleApp6
                 if ((op == op2) && (op2 == op3) && (op == '*' || op == 'x')) risultato = risultato * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 * n3 * n4
                 else if ((op == '+') && (op2 == '*' || op2 == 'x') && (op3 == op2)) risultato = primo + (temp * temp2 * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 + n2 * n3 * n4
                 else if ((op == '+') && (op2 == '*' || op2 == 'x') && (op3 == ':' || op3 == '/')) risultato = primo + (temp * temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 + n2 * n3 / n4
+                else if ((op == '+') && (op2 == '*' || op2 == 'x') && (op3 == '-')) risultato = primo + (temp * temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 + n2 * n3 - n4
                 else if ((op == '+') && (op2 == '/' || op2 == ':') && (op3 == 'x' || op3 == '*')) risultato = primo + (temp / temp2 * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 + n2 / n3 * n4
                 else if ((op == '+') && (op2 == '/' || op2 == ':') && (op3 == op2)) risultato = primo + (temp / temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 + n2 / n3 / n4
                 else if ((op2 == op3) && op == '+' && (op2 == '-')) risultato = primo + temp - temp2 - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 + n2 - n3 - n4
-                else if ((op == '-') && (op2==op3) && (op2 == '*' || op2 == 'x')) risultato = primo - (temp * temp2 * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 - n2 * n3 * n4
+                else if ((op == '-') && (op2 == op3) && (op2 == '*' || op2 == 'x')) risultato = primo - (temp * temp2 * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 - n2 * n3 * n4
                 else if ((op == '-') && (op2 == '*' || op2 == 'x') && (op3 == ':' || op3 == '/')) risultato = primo - (temp * temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 - n2 * n3 / n4
                 else if ((op == '-') && (op2 == '/' || op2 == ':') && (op3 == 'x' || op3 == '*')) risultato = primo - (temp / temp2 * Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 - n2 / n3 * n4
                 else if ((op == '-') && (op2 == '/' || op2 == ':') && (op3 == op2)) risultato = primo - (temp / temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1])); // case n1 - n2 / n3 / n4
@@ -221,9 +222,9 @@ namespace ConsoleApp6
                 else if ((op == 'x' || op == '*') && (op2 == op) && (op3 == '+')) risultato = (primo * temp * temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 * n3 - n4
                 else if ((op == 'x' || op == '*') && (op2 == '+') && (op3 == op2)) risultato = (primo * temp) + temp2 + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 + n3 + n4
                 else if ((op == 'x' || op == '*') && (op2 == '+') && (op3 == '-')) risultato = (primo * temp) + temp2 - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 + n3 - n4
-                else if ((op == 'x' || op == '*') && (op2 == '/'||op2 ==':') && (op3 == '+')) risultato = (primo * temp / temp2) + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 / n3 + n4
-                else if ((op == 'x' || op == '*') && (op2 == '/'||op2 ==':') && (op3 == '-')) risultato = (primo * temp / temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 / n3 - n4
-                else if ((op == 'x' || op == '*') && (op2 == op) && (op3 == ':'||op3 == '/')) risultato = primo * temp * temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 * n3 / n4
+                else if ((op == 'x' || op == '*') && (op2 == '/' || op2 == ':') && (op3 == '+')) risultato = (primo * temp / temp2) + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 / n3 + n4
+                else if ((op == 'x' || op == '*') && (op2 == '/' || op2 == ':') && (op3 == '-')) risultato = (primo * temp / temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 / n3 - n4
+                else if ((op == 'x' || op == '*') && (op2 == op) && (op3 == ':' || op3 == '/')) risultato = primo * temp * temp2 / Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 * n2 * n3 / n4
                 else if ((op == '/' || op == ':') && (op2 == '-') && (op3 == op2)) risultato = (primo / temp) - temp2 - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 - n3 - n4
                 else if ((op == '/' || op == ':') && (op2 == '-') && (op3 == '+')) risultato = (primo / temp) - temp2 + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 - n3 + n4
                 else if ((op == '/' || op == ':') && (op2 == op) && (op3 == '+')) risultato = (primo / temp * temp2) + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 * n3 + n4
