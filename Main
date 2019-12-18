@@ -229,7 +229,7 @@ namespace ConsoleApp3
                 else if ((op == '/' || op == ':') && (op2 == '-') && (op3 == op2)) risultato = (primo / temp) - temp2 - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 - n3 - n4
                 else if ((op == '/' || op == ':') && (op2 == '-') && (op3 == '+')) risultato = (primo / temp) - temp2 + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 - n3 + n4
                 else if ((op == '/' || op == ':') && (op2 == op) && (op3 == '+')) risultato = (primo / temp * temp2) + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 * n3 + n4
-                else if ((op == '/' || op == ':') && (op2 == op) && (op3 == '+')) risultato = (primo / temp * temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 * n3 - n4
+                else if ((op == '/' || op == ':') && (op2 == 'x'||op2 =='*') && (op3 == '-')) risultato = (primo / temp * temp2) - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 * n3 - n4
                 else if ((op == '/' || op == ':') && (op2 == '+') && (op3 == op2)) risultato = (primo / temp) + temp2 + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 + n3 + n4
                 else if ((op == '/' || op == ':') && (op2 == '+') && (op3 == '-')) risultato = (primo / temp) + temp2 - Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 + n3 - n4
                 else if ((op == '/' || op == ':') && (op2 == op) && (op3 == '+')) risultato = (primo / temp / temp2) + Convert.ToDouble(numeri_letti[numeri_letti.Count - 1]); // case n1 / n2 / n3 + n4
